@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Date Night Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <p class="eyebrow">Los Angeles · Orange · Ventura counties</p>
+    <h1>Date night, planned.</h1>
+    <p class="lede">Tell us when and where. Get a full evening, then book it.</p>
+    <form id="ask" class="ask">
+      <input id="askText" type="text" autocomplete="off" aria-label="Describe your date night"
+        placeholder="Friday at 7pm in Pasadena, dinner then dessert, romantic">
+      <button type="submit">Plan it</button>
+    </form>
+    <p id="askHint" class="hint" role="status"></p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="detailsTitle">
+      <h2 id="detailsTitle">The details</h2>
+      <form id="planForm">
+        <div class="grid">
+          <label>Near
+            <select id="city" required></select>
+          </label>
+          <label>Date <input id="date" type="date" required></label>
+          <label>Start <input id="time" type="time" value="18:30" required></label>
+          <label>Home by <span class="opt">optional</span> <input id="homeBy" type="time"></label>
+        </div>
+        <button type="button" id="locate" class="link">Use my current location</button>
+        <span id="locStatus" class="hint" role="status"></span>
+
+        <fieldset><legend>How many stops?</legend><div class="seg" data-name="stops">
+          <button type="button" data-v="1">1 · Just the main event</button>
+          <button type="button" data-v="2">2 · Dinner + after</button>
+          <button type="button" data-v="3">3 · Before, dinner, after</button>
+        </div></fieldset>
+        <fieldset id="anchorField" hidden><legend>Main event</legend><div class="seg" data-name="anchor">
+          <button type="button" data-v="dinner">Dinner</button>
+          <button type="button" data-v="activity">Something to do</button>
+        </div></fieldset>
+        <fieldset><legend>Who's going?</legend><div class="seg" data-name="stage">
+          <button type="button" data-v="first-date">First date</button>
+          <button type="button" data-v="new-couple">New couple</button>
+          <button type="button" data-v="long-term">Long-term</button>
+          <button type="button" data-v="parents">Busy parents</button>
+        </div></fieldset>
+        <fieldset><legend>Vibe <span class="opt">pick any</span></legend><div id="vibes" class="chips"></div></fieldset>
+        <div class="grid">
+          <fieldset><legend>Budget</legend><div class="seg" data-name="budget">
+            <button type="button" data-v="1">$</button><button type="button" data-v="2">$$</button>
+            <button type="button" data-v="3">$$$</button><button type="button" data-v="4">$$$$</button>
+          </div></fieldset>
+          <fieldset><legend>Scale</legend><div class="seg" data-name="scale">
+            <button type="button" data-v="small">Low-key</button><button type="button" data-v="balanced">Balanced</button>
+            <button type="button" data-v="extravagant">Extravagant</button>
+          </div></fieldset>
+          <fieldset><legend>Max drive</legend><div class="seg" data-name="maxKm">
+            <button type="button" data-v="10">~6 mi</button><button type="button" data-v="25">~15 mi</button>
+            <button type="button" data-v="50">~30 mi</button>
+          </div></fieldset>
+        </div>
+        <label class="check"><input id="noAlcohol" type="checkbox"> Skip bars and drinks-only stops</label>
+        <button type="submit" class="primary">Build my date night</button>
+        <p id="formError" class="error" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="results" hidden aria-live="polite">
+      <div id="notes"></div>
+      <div id="tabs" class="tabs" role="tablist"></div>
+      <div id="plan"></div>
+    </section>
+
+    <section class="card" aria-labelledby="trendTitle">
+      <h2 id="trendTitle">Trending date ideas</h2>
+      <p id="trendSource" class="hint"></p>
+      <ul id="trends" class="trends"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p id="sourceLine"></p>
+    <p>Pilot data is curated by hand. Always confirm hours and availability on the venue's Yelp or Google page.</p>
+  </footer>
+
+  <dialog id="reserve" aria-labelledby="reserveTitle">
+    <form method="dialog" class="close"><button aria-label="Close">×</button></form>
+    <h2 id="reserveTitle">Reserve</h2>
+    <p id="reserveWhen" class="hint"></p>
+    <form id="reserveForm" class="grid">
+      <label>Name on reservation <input id="rName" required autocomplete="name"></label>
+      <label>Your phone <span class="opt">optional</span> <input id="rPhone" type="tel" autocomplete="tel"></label>
+      <label>Party <input id="rParty" type="number" min="1" max="12" value="2"></label>
+      <label class="wide">Notes <span class="opt">optional</span> <input id="rNotes" placeholder="Anniversary, quiet table, allergy…"></label>
+      <button type="submit" class="primary wide">Write my request</button>
+    </form>
+    <p id="reserveError" class="error" role="alert"></p>
+    <div id="drafts" hidden></div>
+  </dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

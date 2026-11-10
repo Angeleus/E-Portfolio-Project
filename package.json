@@ -1,0 +1,14 @@
+{
+  "name": "date-night-planner",
+  "version": "0.1.0",
+  "description": "Plans 1-3 stop date nights in Los Angeles, Orange and Ventura counties and drafts the reservation for you.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=20.6" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.js",
+    "dev": "node --env-file-if-exists=.env --watch server/index.js",
+    "scan:trends": "node --env-file-if-exists=.env scripts/scan-trends.js",
+    "test": "node --test"
+  }
+}
